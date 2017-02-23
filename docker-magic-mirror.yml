@@ -1,0 +1,27 @@
+version: "1"
+services: 
+
+  alexapi:
+    image: joanaz/alexapi
+    ports:
+      - "5050"
+    networks:
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+      
+  magicmirror:
+    image: joanaz/magicmirror
+    ports:
+      - "8080"
+    networks:
+      - frontend
+      - backend
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  frontend:
+  backend:
